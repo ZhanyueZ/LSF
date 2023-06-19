@@ -21,7 +21,7 @@ export const Actions = ({ store }) => {
   return (
     <Elem name="section">
       {store.hasInterface('annotations:view-all')  && (
-        <Tooltip title="View all annotations">
+        <Tooltip title="查看所有标注">
           <Button
             icon={<IconViewAll />}
             type="text"

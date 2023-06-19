@@ -91,15 +91,16 @@ export const AnnotationButton = observer(({ entity, capabilities, annotationStor
     const deleteAnnotation = useCallback(() => {
       clickHandler();
       confirm({
-        title: 'Delete annotation?',
+        title: '删除标注？',
         body: (
           <>
-            This will <strong>delete all existing regions</strong>. Are you sure you want to delete them?<br/>
-            This action cannot be undone.
+            这将会 <strong>删除所有存在的区域</strong>. 您确定您要删除它们吗？<br/>
+            此操作将不会被撤销
           </>
         ),
         buttonLook: 'destructive',
-        okText: 'Delete',
+        okText: '删除',
+        cancelText: '取消',
         onOk: () => {
           entity.list.deleteAnnotation(entity);
         },
@@ -131,7 +132,7 @@ export const AnnotationButton = observer(({ entity, capabilities, annotationStor
             <Elem name="icon">
               <IconDuplicate width={20} height={24} />
             </Elem>
-            Duplicate Annotation
+            重复标注
           </Elem>
         )}
         {capabilities.enableAnnotationDelete && !isPrediction && (
@@ -141,7 +142,7 @@ export const AnnotationButton = observer(({ entity, capabilities, annotationStor
               <Elem name="icon">
                 <IconTrashRect width={14} height={18} />
               </Elem>{' '}
-              Delete Annotation
+              删除标注
             </Elem>
           </>
         )}

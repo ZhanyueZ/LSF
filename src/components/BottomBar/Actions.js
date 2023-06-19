@@ -17,12 +17,12 @@ export const Actions = ({ store }) => {
       {!isPrediction && !isViewAll && store.hasInterface('edit-history') && <EditingHistory entity={entity} />}
 
       {store.description && store.hasInterface('instruction') && (
-        <Tooltip placement="topLeft" title="Show instructions">
+        <Tooltip placement="topLeft" title="展示指导">
           <Button
             icon={<IconInfoOutline style={{ width: 20, height: 20 }}/>}
             primary={store.showingDescription}
             type="text"
-            aria-label="Instructions"
+            aria-label="指导"
             onClick={() => store.toggleDescription()}
             style={{
               height: 36,
@@ -32,11 +32,11 @@ export const Actions = ({ store }) => {
           />
         </Tooltip>
       )}
-      <Tooltip placement="topLeft" title="Settings">
+      <Tooltip placement="topLeft" title="设置">
         <Button
           icon={<LsSettingsAlt/>}
           type="text"
-          aria-label="Settings"
+          aria-label="设置"
           onClick={() => store.toggleSettings()}
           style={{
             height: 36,

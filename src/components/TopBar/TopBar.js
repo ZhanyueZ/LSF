@@ -25,7 +25,7 @@ export const TopBar = observer(({ store }) => {
         <Elem name="group">
           <CurrentTask store={store}/>
           {store.hasInterface('annotations:view-all')  && (
-            <Tooltip title="View all annotations">
+            <Tooltip title="查看所有标注">
               <Button
                 className={'topbar__button'}
                 icon={<IconViewAll />}

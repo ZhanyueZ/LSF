@@ -67,17 +67,17 @@ export const Controls = controlsInjector(observer(({ store, history, annotation 
 
   const RejectButton = useMemo(() => {
     return (
-      <ButtonTooltip key="reject" title="Reject annotation: [ Ctrl+Space ]">
+      <ButtonTooltip key="reject" title="拒绝标注: [ Ctrl+Space ]">
         <Button aria-label="reject-annotation" disabled={disabled} onClick={async (e)=> {
           if(store.hasInterface('comments:reject') ?? true) {
-            buttonHandler(e, () => store.rejectAnnotation({}), 'Please enter a comment before rejecting');
+            buttonHandler(e, () => store.rejectAnnotation({}), '请在拒绝前输入评论');
           } else {
             console.log('rejecting');
             await store.commentStore.commentFormSubmit();
             store.rejectAnnotation({});
           }
         }}>
-          Reject
+          拒绝
         </Button>
       </ButtonTooltip>
     );
@@ -87,19 +87,19 @@ export const Controls = controlsInjector(observer(({ store, history, annotation 
     buttons.push(RejectButton);
 
     buttons.push(
-      <ButtonTooltip key="accept" title="Accept annotation: [ Ctrl+Enter ]">
+      <ButtonTooltip key="accept" title="接受标注: [ Ctrl+Enter ]">
         <Button aria-label="accept-annotation" disabled={disabled} look="primary" onClick={async () => {
           await store.commentStore.commentFormSubmit();
           store.acceptAnnotation();
         }}>
-          {history.canUndo ? 'Fix + Accept' : 'Accept'}
+          {history.canUndo ? '修复+接受' : '接受'}
         </Button>
       </ButtonTooltip>,
     );
   } else if (annotation.skipped) {
     buttons.push(
       <Elem name="skipped-info" key="skipped">
-        <IconBan color="#d00" /> Was skipped
+        <IconBan color="#d00" /> 被跳过
       </Elem>);
     buttons.push(
       <ButtonTooltip key="cancel-skip" title="Cancel skip: []">
@@ -107,7 +107,7 @@ export const Controls = controlsInjector(observer(({ store, history, annotation 
           await store.commentStore.commentFormSubmit();
           store.unskipTask();
         }}>
-          Cancel skip
+          取消跳过
         </Button>
       </ButtonTooltip>,
     );
@@ -117,13 +117,13 @@ export const Controls = controlsInjector(observer(({ store, history, annotation 
         <ButtonTooltip key="skip" title="Cancel (skip) task: [ Ctrl+Space ]">
           <Button aria-label="skip-task" disabled={disabled} onClick={async (e)=> {
             if(store.hasInterface('comments:skip') ?? true) {
-              buttonHandler(e, () => store.skipTask({}), 'Please enter a comment before skipping');
+              buttonHandler(e, () => store.skipTask({}), '请在跳过前输入评论');
             } else {
               await store.commentStore.commentFormSubmit();
               store.skipTask({});
             }
           }}>
-            Skip
+            跳过
           </Button>
         </ButtonTooltip>,
       );
@@ -133,8 +133,8 @@ export const Controls = controlsInjector(observer(({ store, history, annotation 
 
     if ((userGenerate && !sentUserGenerate) || (store.explore && !userGenerate && store.hasInterface('submit'))) {
       const title = submitDisabled
-        ? 'Empty annotations denied in this project'
-        : 'Save results: [ Ctrl+Enter ]';
+        ? '此项目中的空注释被拒绝'
+        : '保存结果: [ Ctrl+Enter ]';
       // span is to display tooltip for disabled button
 
       buttons.push(
@@ -144,7 +144,7 @@ export const Controls = controlsInjector(observer(({ store, history, annotation 
               await store.commentStore.commentFormSubmit();
               store.submitAnnotation();
             }}>
-              Submit
+              提交
             </Button>
           </Elem>
         </ButtonTooltip>,
@@ -154,12 +154,12 @@ export const Controls = controlsInjector(observer(({ store, history, annotation 
     if ((userGenerate && sentUserGenerate) || (!userGenerate && store.hasInterface('update'))) {
       const isUpdate = sentUserGenerate || versions.result;
       const button = (
-        <ButtonTooltip key="update" title="Update this task: [ Alt+Enter ]">
+        <ButtonTooltip key="update" title="更新此任务: [ Alt+Enter ]">
           <Button aria-label="submit" disabled={disabled || submitDisabled} look={look} onClick={async () => {
             await store.commentStore.commentFormSubmit();
             store.updateAnnotation();
           }}>
-            {isUpdate ? 'Update' : 'Submit'}
+            {isUpdate ? '更新' : '提交'}
           </Button>
         </ButtonTooltip>
       );

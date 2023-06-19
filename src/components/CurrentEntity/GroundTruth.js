@@ -10,8 +10,8 @@ const { Block, Elem } = BemWithSpecifiContext();
 
 export const GroundTruth = observer(({ entity, disabled = false, size = 'md' }) => {
   const title = entity.ground_truth
-    ? 'Unset this result as a ground truth'
-    : 'Set this result as a ground truth';
+    ? '将此结果取消设置为正确基准值（ground truth）'
+    : '将此结果设定为正确基准值（ground truth）';
 
   return (!entity.skipped && !entity.userGenerate && entity.type !== 'prediction') && (
     <Block name="ground-truth" mod={{ disabled, size }}>
